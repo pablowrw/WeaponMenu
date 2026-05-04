@@ -1,0 +1,164 @@
+// =============================================================================
+//  Weapon Menu — example configuration
+// =============================================================================
+//
+//  COMMANDS (configurable via the Commands section below)
+//  ------------------------------------------------------
+//  !guns / !menu        — open full weapon menu
+//  !primary             — open primary weapons menu
+//  !secondary           — open secondary weapons menu
+//
+//  Quick commands (usable while alive):
+//  !ak  !ak47           — AK-47
+//  !m4  !m4a4           — M4A4
+//  !m4a1  !m4s          — M4A1-S
+//  !awp                 — AWP
+//  !scout  !ssg  !ssg08 — SSG 08
+//  !g3sg1  !auto        — G3SG1
+//  !scar  !scar20       — SCAR-20
+//  !famas               — FAMAS
+//  !aug                 — AUG
+//  !galil               — Galil AR
+//  !sg  !sg556  !krieg  — SG 556
+//  !mp9                 — MP9
+//  !mp7                 — MP7
+//  !mp5  !mp5sd         — MP5-SD
+//  !ump  !ump45         — UMP-45
+//  !p90                 — P90
+//  !bizon               — PP-Bizon
+//  !mac  !mac10         — MAC-10
+//  !xm  !xm1014         — XM1014
+//  !mag7                — MAG-7
+//  !sawedoff            — Sawed-Off
+//  !nova                — Nova
+//  !m249                — M249
+//  !negev               — Negev
+//  !usp                 — USP-S
+//  !p2000               — P2000
+//  !glock               — Glock-18
+//  !dual  !dualies      — Dual Berettas
+//  !p250                — P250
+//  !57  !fiveseven      — Five-SeveN
+//  !cz  !cz75           — CZ75-Auto
+//  !tec  !tec9          — Tec-9
+//  !r8  !revolver       — R8 Revolver
+//  !deagle  !de         — Desert Eagle
+//
+//  DISPLAY NAMES (for Whitelist, Blacklist, KeepGroundWeapons, WeaponsCT/T)
+//  -------------------------------------------------------------------------
+//  Primaries : M4A4, M4A1, FAMAS, AUG, AK47, GALIL, SG556, SCAR20,
+//              AWP, SSG08, G3SG1, MP9, MP7, MP5SD, UMP45, P90,
+//              BIZON, MAC10, XM1014, MAG7, SAWEDOFF, NOVA, M249, NEGEV
+//  Secondaries: USP, P2000, GLOCK, DUAL, P250, FIVESEVEN, CZ75A, TEC9,
+//               REVOLVER, DEAGLE
+//
+//  GRENADE / UTILITY NAMES (short form — use these in WeaponsCT / WeaponsT)
+//  -------------------------------------------------------------------------
+//  flashbang / flash        — flashbang grenade
+//  smoke / smokegrenade     — smoke grenade
+//  he / hegrenade           — HE grenade
+//  molotov                  — Molotov (T only)
+//  incgrenade / incendiary  — Incendiary (CT only)
+//  decoy                    — decoy grenade
+//  c4                       — bomb
+//
+//  WEAPON LIMITS
+//  -------------------------------------------------------------------------
+//  WeaponLimits uses JSON object syntax (key: value), not an array.
+//  Each entry maps a weapon display name to the maximum number of players
+//  per team that may carry it at the same time.
+//  Example: { "AWP": 1, "SSG08": 2 }
+//
+// =============================================================================
+
+{
+  "WeaponMenu": {
+
+    "ChatPrefix": "[ [lime]★ [darkred]WeaponMenu [lime]★ [default]]",
+    "PermissionForCommands": "",
+    "CloseMenuOnSelect": false,
+
+    // Restrict weapon selection to buy zones (de_, cs_ maps).
+    "RequireBuyZone": true,
+
+    // Auto-open the menu on spawn and close it automatically.
+    "AutoOpenMenu": false,
+    "MenuDisplayTime": 0,
+    "SelectionTimeLimit": 0,
+
+    "Blacklist": [],
+    "RemoveGroundWeapons": false,
+    "RemoveGroundWeaponsDelay": 0.1,
+    "KeepGroundWeapons": [],
+
+    // Maximum alive players per team that may carry each weapon.
+    // Uses JSON object syntax: { "WeaponName": limit, ... }
+    // Example: { "AWP": 1, "SSG08": 2 }
+    "WeaponLimits": {},
+
+    "SpawnLoadout": {
+      "Enabled": false,
+      "ForceStrip": true,
+      "ArmorCT": 100,
+      "ArmorT": 100,
+      "SpawnDelay": 0.5,
+      "WeaponsCT": [],
+      "WeaponsT": []
+    },
+
+    "MapConfigs": {
+
+      // ── Example 1: standard competitive map ────────────────────────────────
+      // de_dust2 — buy-zone restriction is set globally via RequireBuyZone: true.
+      // Limit AWPs to 1 per team, hide heavy MGs from the menu.
+      "de_dust2": {
+        "WeaponLimits": { "AWP": 1 },
+        "Blacklist": ["NEGEV", "M249"],
+        "RemoveGroundWeapons": false
+      },
+
+      // ── Example 2: aim/training map ────────────────────────────────────────
+      // aim_map — no buy zone triggers, use SelectionTimeLimit (global) instead.
+      // Only AK47, M4A1 and DEAGLE in the menu.
+      // Remove all ground weapons but keep AWPs lying around.
+      "aim_map": {
+        "Whitelist": ["AK47", "M4A1", "DEAGLE"],
+        "RemoveGroundWeapons": true,
+        "RemoveGroundWeaponsDelay": 0.1,
+        "KeepGroundWeapons": ["AWP"]
+      },
+
+      // ── Example 3: workshop map by ID ──────────────────────────────────────
+      // Full menu (minus heavy MGs), spawn loadout with rifles and grenades.
+      "3085962528": {
+        "Blacklist": ["NEGEV", "M249"],
+        "SpawnLoadout": {
+          "Enabled": true,
+          "ForceStrip": true,
+          "ArmorCT": 100,
+          "ArmorT": 100,
+          "SpawnDelay": 0.5,
+          "WeaponsCT": ["M4A1", "USP", "flashbang", "smoke"],
+          "WeaponsT": ["AK47", "GLOCK", "flashbang", "smoke"]
+        }
+      }
+    },
+
+    // ── Command configuration ─────────────────────────────────────────────────
+    "Commands": {
+
+      // Comma-separated aliases for the full weapon menu.
+      // Set to "" to disable the command entirely.
+      "MenuCommand": "guns,menu",
+
+      // Primary-weapons-only menu. Empty = disabled.
+      "PrimaryCommand": "primary",
+
+      // Secondary-weapons-only menu. Empty = disabled.
+      "SecondaryCommand": "secondary",
+
+      // Set to false to disable all quick commands (!ak, !awp, etc.).
+      "EnableQuickCommands": true
+    }
+  }
+}

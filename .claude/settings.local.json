@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/**)",
+      "Bash(dotnet-script)",
+      "Bash(dotnet run *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet publish *)",
+      "Bash(dotnet-ildasm SwiftlyS2.CS2.dll)",
+      "Bash(grep -E \"^\\\\[?[a-z]+\\\\]?$|gold|darkred|green|lime|red|blue|white|gray|orange|yellow|purple|cyan|pink\")",
+      "Bash(grep -E \"^[a-z]{2,12}$\")",
+      "Bash(grep -iE \"^\\\\{[a-z]+\\\\}$|\\\\{[A-Z]+\\\\}|colour|BLUE|RED|GREEN|GOLD|LIME|WHITE|GRAY|ORANGE|YELLOW|PURPLE|MAGENTA|LIGHTBLUE|CYAN|PINK|DARKRED|DARKBLUE\")",
+      "Bash(grep -E \"^[A-Z]{2,15}$\")",
+      "Bash(grep -vE \"^[A-Z]{1}$|NULL|TRUE|FALSE|NONE\")",
+      "Bash(python3 *)",
+      "Bash(unzip *)",
+      "Bash(ls /home/pablo/Downloads/tmp/GunsMenuSW2-2/*.sln)"
+    ]
+  }
+}

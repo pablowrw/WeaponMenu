@@ -1,0 +1,11 @@
+{
+  "WeaponSelected":    "You selected {0}.",
+  "WeaponNotAvailable": "{0} is not available on this map.",
+  "MustBeAlive":       "You must be alive to use this command.",
+  "NoPermission":      "You don't have permission to use this command.",
+  "OnlyPlayers":       "This command can only be used by players!",
+  "MenuUnavailable":   "Menu system is not available.",
+  "SelectionExpired":  "Weapon selection time has expired.",
+  "WeaponLimitReached": "Your team has reached the limit for {0}.",
+  "NotInBuyZone":      "You must be in spawn to use this command."
+}
